@@ -143,6 +143,7 @@ class YoutubeDl
             '--no-playlist',
             '--ignore-config',
             '--write-info-json',
+            '--no-clean-infojson',
         ];
 
         foreach ($this->options as $option => $value) {
@@ -202,7 +203,7 @@ class YoutubeDl
 
     protected function processDownload(Process $process): Video
     {
-        if (!preg_match('/Writing video description metadata as JSON to:\s(.+)/', $process->getOutput(), $m)) {
+        if (!preg_match('/Writing video metadata as JSON to:\s(.+)/', $process->getOutput(), $m)) {
             throw new YoutubeDlException('Failed to detect metadata file.');
         }
 
